@@ -12,7 +12,7 @@
 
 
   2. Create a file named .env in the project root with the following content :
-`
+```js
  DATABASE_URL=postgres://user_challenge:1234challenge@127.0.0.1:5432/challengeDb         #url for connect frontend with database
 
 
@@ -23,11 +23,11 @@
   POSTGRES_PASSWORD=1234challenge  # The password for the specified username
 
   POSTGRES_DB=challengeDb     # The name of the PostgreSQL database
-`
+```
   3. Use the Makefile to run the code :
-  `
-js
+
+```js
 {
   make up 
 }
-`
+```
