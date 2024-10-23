@@ -47,9 +47,9 @@ export default function Home() {
   useEffect(() => {
     const createTableandDisplaystudents = async() =>{
       await createTable();
+      window.location.reload();
       await getAllStudent();
     }
-
     createTableandDisplaystudents();
   },[]);
   return (

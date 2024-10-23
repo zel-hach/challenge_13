@@ -12,7 +12,6 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      // Check if the sequence exists and create it if it doesn't
       await pool.query(`
         DO $$
         BEGIN
@@ -22,7 +21,6 @@ export default async function handler(
         END $$;
       `);
 
-      // Create the table if it doesn't exist
       await pool.query(`
         CREATE TABLE IF NOT EXISTS students (
             id SERIAL PRIMARY KEY,
