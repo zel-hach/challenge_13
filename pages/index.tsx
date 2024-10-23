@@ -54,8 +54,8 @@ export default function Home() {
   },[]);
   return (
     <>
-      <DisplayAll data={data}/>
       <AddStudent />
+      <DisplayAll data={data}/>
     </>
   );
 }
