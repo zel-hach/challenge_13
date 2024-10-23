@@ -1,7 +1,9 @@
 import AddStudent from "@/pages/Component/AddStudent";
 import DisplayAll from "./Component/DisplayAll";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 export default function Home() {
+
+  const [data,setData] =  useState<any[]>([])
 
   async function createTable() {
     try {
@@ -20,15 +22,40 @@ export default function Home() {
       console.error("Error during table creation:", error);
     }
   }
+    const getAllStudent = async () =>{
+      try{
+        const response = await fetch(`/api/AddStudentDb`,
+          {
+            method:'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        if(response.ok)
+        {
+          const data = await response.json()
+          setData(data);
+        }
+      }catch(e)
+      {
+        console.log("failed to fetch data: ",e)
+      }
 
+    }
+  
   useEffect(() => {
-    createTable();
-  },[]);
+    const createTableandDisplaystudents = async() =>{
+      await createTable();
+      await getAllStudent();
+    }
 
+    createTableandDisplaystudents();
+  },[]);
   return (
     <>
+      <DisplayAll data={data}/>
       <AddStudent />
-      <DisplayAll />
     </>
   );
 }

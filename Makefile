@@ -1,5 +1,6 @@
 up: 
 	docker-compose up
+	docker-compose up
 clean:
 	docker-compose down
 	docker-compose rm

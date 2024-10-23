@@ -4,36 +4,8 @@ import { ST } from 'next/dist/shared/lib/utils';
 import Students from './Students';
 
 
-export default function DisplayAll() {
+export default function DisplayAll(props:any) {
 
-  const [data,setData] =  useState<any[]>([])
-
-  
- 
-  useEffect(()=>{
-    const getAllStudent = async () =>{
-      try{
-        const response = await fetch(`/api/AddStudentDb`,
-          {
-            method:'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        if(response.ok)
-        {
-          const data = await response.json()
-          setData(data);
-        }
-      }catch(e)
-      {
-        console.log("failed to fetch data: ",e)
-      }
-
-    }
-    getAllStudent();
-  },[])
 
   return (
     <div className='flex justify-center gap-7  m-12'>
@@ -47,7 +19,7 @@ export default function DisplayAll() {
                 <th>Note</th>
             </tr>
             {
-              data.map((student,index) => [
+              props.data.map((student:any,index:number) => [
                 <Students key={student.id} student={student} index={index}></Students>
               ])
             }

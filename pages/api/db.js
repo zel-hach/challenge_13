@@ -2,9 +2,12 @@
 
 import { Pool } from 'pg';
 
+require('dotenv').config()
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgres://user_challenge:1234challenge@localhost:5432/challengeDb',
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  host: process.env.POSTGRES_HOST,
+  port: 5432,
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
 });
-
 export default pool;
