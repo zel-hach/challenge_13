@@ -1,0 +1,32 @@
+version: "3"
+services:
+  ######## DATABASE ########
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+    - "5432:5432"
+    env_file:
+    - .env
+    networks:
+    - web_app_challenge
+    restart: on-failure
+  ######### FRONTEND #########
+  frontend:
+    build:
+      context: .
+    image: frontend
+    container_name: frontend
+    depends_on: 
+     - postgres
+    env_file: 
+    - .env
+    ports:
+    - "3000:3000"
+    networks:
+    - web_app_challenge
+    restart: on-failure
+ 
+networks:
+  web_app_challenge:
+    driver: bridge
